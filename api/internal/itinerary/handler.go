@@ -98,7 +98,7 @@ func (h *Handler) CreateItinerary(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Location", "/v1/itineraries/"+out.Id) // §2.1
-	writeJSON(w, http.StatusCreated, out)
+	writeJSON(w, http.StatusOK, out)
 }
 
 // decode reads the body strictly. It returns field-level details for type
