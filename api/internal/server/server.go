@@ -3,8 +3,11 @@ package server
 
 import (
 	"encoding/json"
+	"log/slog"
 	"net/http"
 
+	"github.com/thinhduyng/ai-travel-planner/api/internal/api"
+	"github.com/thinhduyng/ai-travel-planner/api/internal/itinerary"
 	"github.com/thinhduyng/ai-travel-planner/api/internal/planner"
 )
 
@@ -22,7 +25,24 @@ func New(opts Options) http.Handler {
 	mux.HandleFunc("GET /health", func(w http.ResponseWriter, _ *http.Request) {
 		writeJSON(w, http.StatusOK, map[string]string{"status": "ok"})
 	})
-	return mux
+	// Routes for the contract endpoints come from the OpenAPI spec (internal/api).
+	api.HandlerWithOptions(&itinerary.Handler{Planner: opts.Planner}, api.StdHTTPServerOptions{BaseRouter: mux})
+	return recoverer(mux)
+}
+
+// recoverer turns panics into a generic 500 with no internals (contract §3.6).
+func recoverer(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		defer func() {
+			if v := recover(); v != nil {
+				slog.ErrorContext(r.Context(), "panic", "value", v)
+				writeJSON(w, http.StatusInternalServerError, map[string]any{
+					"error": map[string]any{"code": "INTERNAL_ERROR", "message": "Something went wrong", "details": []any{}},
+				})
+			}
+		}()
+		next.ServeHTTP(w, r)
+	})
 }
 
 func writeJSON(w http.ResponseWriter, status int, v any) {
