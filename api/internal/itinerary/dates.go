@@ -20,9 +20,13 @@ func parseDate(s string) (time.Time, bool) {
 
 // tripDates returns every date from start to end inclusive.
 func tripDates(start, end time.Time) []string {
-	var out []string
-	for d := start; !d.After(end); d = d.AddDate(0, 0, 1) {
-		out = append(out, d.Format(dateLayout))
+	n := tripLength(start, end)
+	if n < 1 {
+		return nil
+	}
+	out := make([]string, n)
+	for i := 1; i < n; i++ {
+		out[i] = start.AddDate(0, 0, i).Format(dateLayout)
 	}
 	return out
 }
