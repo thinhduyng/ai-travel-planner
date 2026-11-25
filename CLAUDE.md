@@ -41,6 +41,29 @@ Run `make check` before saying a task is done. If it fails, the task is not done
 - Never put provider errors, stack traces or secrets in a response. Log them instead.
 - Standard library first; ask before adding a dependency.
 
+## AI-LOG.md (course requirement, CSC13114)
+`AI-LOG.md` at the root records every task where an assistant did part of the work. It is part
+of every milestone submission (PA#1–PA#5). When you finish a task, append an entry (or draft one
+for the human to confirm). Newest entries go at the bottom.
+
+```md
+## <YYYY-MM-DD>: <what was worked on> (<milestone, e.g. PA#2>)
+Tool: <Claude Code / Copilot / Cursor / none>
+Asked for: <the task, in one sentence>
+Kept: <what was taken as it came>
+Changed: <what the human rewrote, and why>
+Rejected: <what was thrown away, and why>
+```
+
+- Three honest lines are enough: an account, not a transcript. Write it as you go, not the night before.
+- `Changed` and `Rejected` are read most closely: say what the assistant got wrong and **which
+  check caught it** (lint, a contract test, a review). "Nothing went wrong" is fine if it says what was run.
+- Never overstate the human's part or understate the assistant's. Heavy use declared honestly is fine;
+  the team must be able to explain everything in it at the oral.
+- Never put secrets, API keys, real user data or a classmate's work in a prompt or in the log.
+- For the product's own LLM feature, the log (or the docs) must say what data leaves the system and why that is acceptable.
+- Bad entry (don't write this): "Week 3. Used AI for the frontend. Fixed some things."
+
 ## Git and secrets
 - `main` is protected: work on a branch, open a PR, and let CI decide. Never force-push.
 - The human makes the commits. Prepare changes and stop; don't run `git commit` unless asked.
