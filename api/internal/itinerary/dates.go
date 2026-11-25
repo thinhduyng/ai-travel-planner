@@ -25,7 +25,7 @@ func tripDates(start, end time.Time) []string {
 		return nil
 	}
 	out := make([]string, n)
-	for i := 1; i < n; i++ {
+	for i := 0; i < n; i++ {
 		out[i] = start.AddDate(0, 0, i).Format(dateLayout)
 	}
 	return out
