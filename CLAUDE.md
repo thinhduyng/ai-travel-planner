@@ -68,3 +68,34 @@ Rejected: <what was thrown away, and why>
 - `main` is protected: work on a branch, open a PR, and let CI decide. Never force-push.
 - The human makes the commits. Prepare changes and stop; don't run `git commit` unless asked.
 - Never read, print or commit `.env`. Document new variables in `.env.example` with an empty value.
+
+# Project Instructions
+
+## Development
+- Follow existing architecture and conventions.
+- Inspect before modifying.
+- Prefer minimal changes.
+- Write tests for important logic.
+- Do not modify unrelated modules.
+
+## Model Routing
+- Main model: Sonnet.
+- Haiku: exploration and simple read-only work.
+- Opus: complex reasoning and architecture.
+
+## Context Management
+- Use .ai/project-context.md for stable project facts.
+- Use .ai/decisions.md for architectural decisions.
+- Use .ai/tasks/ for task-specific state.
+- Read only relevant context files.
+- Never load every task handoff automatically.
+
+## Git
+- Inspect git status before implementation.
+- Never overwrite unrelated user changes.
+- Do not commit or push unless requested.
+
+## Quality
+- Run relevant tests.
+- Report actual test results.
+- Never claim unverified completion.
