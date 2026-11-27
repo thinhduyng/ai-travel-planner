@@ -1,6 +1,4 @@
 {
-  "model": "sonnet",
-  "effortLevel": "medium",
   "permissions": {
     "allow": [
       "Bash(make lint)",
@@ -23,14 +21,6 @@
       "Bash(gh pr checks:*)",
       "Bash(gh run view:*)"
     ],
-    "ask": [
-      "Bash(git commit:*)",
-      "Bash(git push:*)",
-      "Bash(go get:*)",
-      "Bash(go mod:*)",
-      "Bash(gh pr create:*)",
-      "Bash(gh pr merge:*)"
-    ],
     "deny": [
       "Read(./.env)",
       "Read(./.env.*)",
@@ -46,6 +36,25 @@
       "Bash(rm -rf:*)",
       "Bash(curl:*)",
       "Bash(wget:*)"
+    ],
+    "ask": [
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(go get:*)",
+      "Bash(go mod:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr merge:*)"
     ]
-  }
+  },
+  "model": "sonnet",
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "superpowers@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true
+  },
+  "effortLevel": "medium"
 }

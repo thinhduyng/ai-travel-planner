@@ -99,3 +99,16 @@ Rejected: <what was thrown away, and why>
 - Run relevant tests.
 - Report actual test results.
 - Never claim unverified completion.
+
+## Skill Selection Policy
+
+- Before starting a task, inspect available skills.
+- Automatically invoke relevant skills based on task requirements.
+- Use multiple skills when their responsibilities complement each other.
+- Do not invoke unrelated skills.
+- For simple tasks, avoid unnecessary orchestration.
+- For complex tasks, prefer orchestrate.
+- Apply Ponytail principles to all code changes.
+- Use Context7 when working with external libraries or frameworks.
+- Use Playwright for browser-based testing when applicable.
+- Use handoff when preparing to transition sessions.
